@@ -113,7 +113,7 @@
 
 - (nullable NSIndexPath *)indexPathForElement:(ASCollectionElement *)element
 {
-  return [_elementToIndexPathMap objectForKey:element];
+  return element ? [_elementToIndexPathMap objectForKey:element] : nil;
 }
 
 - (nullable NSIndexPath *)indexPathForElementIfCell:(ASCollectionElement *)element
@@ -183,6 +183,18 @@
   return [_elementToIndexPathMap countByEnumeratingWithState:state objects:buffer count:len];
 }
 
+- (NSString *)smallDescription
+{
+  NSMutableArray *sectionDescriptions = [NSMutableArray array];
+
+  NSUInteger i = 0;
+  for (NSArray *section in _sectionsOfItems) {
+    [sectionDescriptions addObject:[NSString stringWithFormat:@"<S%tu: %tu>", i, section.count]];
+    i++;
+  }
+  return ASObjectDescriptionMakeWithoutObject(@[ @{ @"itemCounts": sectionDescriptions }]);
+}
+
 #pragma mark - ASDescriptionProvider
 
 - (NSString *)description
@@ -206,7 +218,7 @@
 - (BOOL)sectionIndexIsValid:(NSInteger)section assert:(BOOL)assert
 {
   NSInteger sectionCount = _sectionsOfItems.count;
-  if (section >= sectionCount) {
+  if (section >= sectionCount || section < 0) {
     if (assert) {
       ASDisplayNodeFailAssert(@"Invalid section index %zd when there are only %zd sections!", section, sectionCount);
     }
@@ -234,7 +246,7 @@
 
   NSInteger itemCount = _sectionsOfItems[section].count;
   NSInteger item = indexPath.item;
-  if (item >= itemCount) {
+  if (item >= itemCount || item < 0) {
     if (assert) {
       ASDisplayNodeFailAssert(@"Invalid item index %zd in section %zd which only has %zd items!", item, section, itemCount);
     }

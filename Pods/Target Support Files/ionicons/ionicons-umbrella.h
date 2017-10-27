@@ -12,7 +12,9 @@
 
 #import "FontInspector.h"
 #import "ionicons-codes.h"
-#import "IonIcons.h"
+#import "IonIcons-iOS.h"
+#import "ionicons-lib.h"
+#import "ionicons.h"
 
 FOUNDATION_EXPORT double ioniconsVersionNumber;
 FOUNDATION_EXPORT const unsigned char ioniconsVersionString[];

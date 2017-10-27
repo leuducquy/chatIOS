@@ -29,9 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGPoint position;
 @property (nonatomic, assign) CGFloat zPosition;
 @property (nonatomic, assign) CGPoint anchorPoint;
-@property (nullable, nonatomic, strong) id contents;
 @property (nonatomic, assign) CGFloat cornerRadius;
+@property (nullable, nonatomic, strong) id contents;
+@property (nonatomic, copy)   NSString *contentsGravity;
+@property (nonatomic, assign) CGRect contentsRect;
+@property (nonatomic, assign) CGRect contentsCenter;
 @property (nonatomic, assign) CGFloat contentsScale;
+@property (nonatomic, assign) CGFloat rasterizationScale;
 @property (nonatomic, assign) CATransform3D transform;
 @property (nonatomic, assign) CATransform3D sublayerTransform;
 @property (nonatomic, assign) BOOL needsDisplayOnBoundsChange;
@@ -78,12 +82,15 @@ NS_ASSUME_NONNULL_BEGIN
  as they are already on NSObject
 
  @property (nonatomic, assign)           BOOL isAccessibilityElement;
- @property (nonatomic, copy)             NSString *accessibilityLabel;
- @property (nonatomic, copy)             NSString *accessibilityHint;
- @property (nonatomic, copy)             NSString *accessibilityValue;
+ @property (nonatomic, copy, nullable)   NSString *accessibilityLabel;
+ @property (nonatomic, copy, nullable)   NSAttributedString *accessibilityAttributedLabel API_AVAILABLE(ios(11.0),tvos(11.0));
+ @property (nonatomic, copy, nullable)   NSString *accessibilityHint;
+ @property (nonatomic, copy, nullable)   NSAttributedString *accessibilityAttributedHint API_AVAILABLE(ios(11.0),tvos(11.0));
+ @property (nonatomic, copy, nullable)   NSString *accessibilityValue;
+ @property (nonatomic, copy, nullable)   NSAttributedString *accessibilityAttributedValue API_AVAILABLE(ios(11.0),tvos(11.0));
  @property (nonatomic, assign)           UIAccessibilityTraits accessibilityTraits;
  @property (nonatomic, assign)           CGRect accessibilityFrame;
- @property (nonatomic, strong)           NSString *accessibilityLanguage;
+ @property (nonatomic, strong, nullable) NSString *accessibilityLanguage;
  @property (nonatomic, assign)           BOOL accessibilityElementsHidden;
  @property (nonatomic, assign)           BOOL accessibilityViewIsModal;
  @property (nonatomic, assign)           BOOL shouldGroupAccessibilityChildren;

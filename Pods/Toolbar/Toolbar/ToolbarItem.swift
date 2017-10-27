@@ -167,7 +167,7 @@ public class ToolbarItem: UIView {
         
         self.title = title
         self.titleLabel = label
-        
+      
         self.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
         self.setContentHuggingPriority(UILayoutPriorityRequired, for: .vertical)
 
@@ -206,10 +206,12 @@ public class ToolbarItem: UIView {
         self.spacing = spacing
         switch spacing {
         case .flexible:
+            
             self.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
             self.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .vertical)
         case .fixed:
-            self.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+            
+                self.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
             self.setContentHuggingPriority(UILayoutPriorityRequired, for: .vertical)
         default: break
         }
